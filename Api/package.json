@@ -1,0 +1,32 @@
+{
+  "name": "nodeservice",
+  "version": "1.0.0",
+  "description": "Webservice with NodeJS and VUE",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crunchypack/NodeService.git"
+  },
+  "author": "Simon Lobo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/crunchypack/NodeService/issues"
+  },
+  "homepage": "https://github.com/crunchypack/NodeService#readme",
+  "dependencies": {
+    "@sendgrid/mail": "^6.5.2",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "connect-mongo": "^3.2.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^7.6.3",
+    "nodemon": "^3.0.1"
+  }
+}
