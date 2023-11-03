@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const session = require("express-session");
 const connectMongo = require("connect-mongo");
-require('dotenv').config();
+//require('dotenv').config();
 
 
 
