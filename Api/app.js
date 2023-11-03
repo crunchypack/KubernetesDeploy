@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const session = require("express-session");
 const connectMongo = require("connect-mongo");
-//require('dotenv').config();
+require('dotenv').config();
 
 
 
@@ -112,16 +112,18 @@ app.get("/api/:search/:sortby/:desc", (req, res) => {
   const query = {};
   query[sortby] = sort;
   const searchQuery = req.params.search;
-  const search = {
-    $or: [
-      { title: { $regex: searchQuery, $options: "i" } }, // Case-insensitive search for the title
-      { starring: { $in: [searchQuery] } }, // Search in starring array
-      { director: { $in: [searchQuery] } }, // Search in director array
-      { genre: { $in: [searchQuery] } }, // Search in genre array
-      // Check if 'searchQuery' is a number before searching by year
-      !isNaN(searchQuery) && { year: { $eq: parseInt(searchQuery) } },
-    ].filter(Boolean),
-  };
+const partialMatchQuery = { $regex: searchQuery, $options: "i" };
+
+const search = {
+  $or: [
+    { title: partialMatchQuery }, // Partial match for title
+    { starring: partialMatchQuery },
+    { director: partialMatchQuery }, 
+    { genre: partialMatchQuery }, 
+    // Check if 'searchQuery' is a number before searching by year
+    !isNaN(searchQuery) && { year: { $eq: parseInt(searchQuery) } },
+  ].filter(Boolean),
+};
 
   Movies.find(search)
     .sort(query)
